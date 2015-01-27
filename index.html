@@ -1,1 +1,31 @@
-"Hello World"
+<!doctype html>
+<html lang="en" ng-app="personalWeb">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/home.css">
+    <script src="js/api.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="js/viewnav.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+
+
+</head>
+<body>
+<div class="contentview" ng-controller="HomeCtrl">
+	<img src="http://24.media.tumblr.com/75778eb9fafc845f89ba40c57e050f0c/tumblr_mjca1hg6wN1rzma7lo1_400.gif">
+	<p style="color:white; position:relative; bottom:30px;">hopefully i can find something to replace this -____-</p>
+	<ul class="nav">
+		<li><a href="#/home" ng-class="{active:isActive('me')}"  ng-click="toggle('me')">About me</a></li>
+		<li><a href="#/project" ng-class="{active:isActive('project')}"  ng-click="toggle('project')">Project</a></li>
+		<li><a href="#/contact" ng-class="{active:isActive('contact')}"  ng-click="toggle('contact')">Contact</a></li>
+	</ul>
+	<div ng-view>
+	</div>
+</div>
+</body>
+</html>
