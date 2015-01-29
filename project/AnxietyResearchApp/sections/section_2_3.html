@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+
+<body>
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio2_3on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio2_3off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Your Types of Anxious Thinking</h>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <div id='exercise_5'></div>
+            <script>
+                document.getElementById('exercise_5').innerHTML = exercise_5;
+                loadExercise_5();
+            </script>
+        </div>
+        <!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_2_2.html">Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_3_1.html">Continue</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /footer -->
+        <audio style='visibility:hidden;height:0px;width:0px' id='audio2_3iOS' controls>
+            <source src="../audio/2_3.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio2_3Android' controls>
+            <source src="../audio/2_3.mp3">
+            Your browser does not support this audio format.
+        </video>
+        <script>
+            //autoload audio
+            var section = "audio2_3";
+            if (typeof (device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+             if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section + "iOS");
+            } else {
+                var audio = document.getElementById(section + "Android");
+            }
+
+             if (localStorage['audio'] === 'true') {
+                document.getElementById(section + "on").style.visibility = "hidden";
+                document.getElementById(section + "off").style.visibility = "visible";
+                audio.play();
+            }
+
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section + "on").style.visibility = "visible";
+                    document.getElementById(section + "off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section + "on").style.visibility = "hidden";
+                    document.getElementById(section + "off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+</body>
+
+</html>
+
+
+
+

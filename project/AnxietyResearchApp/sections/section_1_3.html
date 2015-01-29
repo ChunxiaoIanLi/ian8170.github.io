@@ -1,0 +1,106 @@
+   <!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio1_3on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio1_3off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Fusion vs. Defusion</h>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <p>
+                Emily treated the thought <i>they think I'm weird</i> as if she literally were weird, so she decided not to approach anyone at the party. For Jack, the mere thought of speaking up in class was accompanied by palpitations, as if he were actually speaking, so he chose to say nothing. These examples demonstrate that when you take your thoughts literally (as facts) or <b><i>fuse</i></b> with them, they appear to have authority, as if they were spoken by a villain, one so powerful that you have no choice but to act on his orders if you want to keep safe.
+            </p>
+            <h3><b><i>Fusion</i></b>: Your anxious thoughts send you down the path of avoidance. </h3>
+            <p>
+                On the other hand, when you are <b><i>defused</i></b> from your thoughts, you see them for what they are: a collection of words and images in your mind. This reduces their power, giving you the freedom to choose how to respond to them.
+
+                In this app, you will take a close look at your anxious thinking, and learn how to apply a wide range of defusion strategies to your fused mind. As you gain experience in unhooking from your anxious thoughts, you will develop the ability to allow your direct experience of social situations to guide your actions, instead of letting your intrusive thoughts do so.
+            </p>
+            <h3> 
+                <b><i>Defusion</i></b>: You can choose the path toward the things you value and take your anxious 
+                thoughts along for the ride.
+            </h3>
+            <div id='exercise_2'></div>
+            <script>
+                document.getElementById('exercise_2').innerHTML = exercise_2;
+                loadExercise_2();
+            </script>            
+        </div>
+        <!-- /content -->
+                    
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                 <ul>
+                    <li>
+                        <a href="section_1_2.html" >Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_2_1.html">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+        <audio style='visibility:hidden;height:0px;width:0px' id='audio1_3iOS' controls>
+            <source src="../audio/1_3.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio1_3Android' controls>
+            <source src="../audio/1_3.mp3">
+            Your browser does not support this audio format.
+        </video>
+        <script>
+            //autoload audio
+            var section = "audio1_3";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>
+
+        
+

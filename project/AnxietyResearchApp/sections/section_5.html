@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed" id='page'>
+        <div data-role="header">
+            <div>
+                <img id='audio5on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio5off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Summary of Defusion Strategies</h1>
+        </div>
+        <!-- /header -->
+        <div data-role="content" id='section_5_body'>
+            <h2> Section 5: Summary of Defusion Strategies </h2>
+
+            <p>
+                You have now been introduced to the basic skills of the “Defusing From Anxious Thoughts” approach to social anxiety and shyness. 
+                <br>
+                Here is a list of the defusion strategies you have learnt over the past few sections.
+                <br>
+                <br>
+                <b><i>I am having the thought that:</i></b> For example, <i>I am having the thought that I'm making a fool of myself.</i>
+                <br>
+                <br>
+                <b><i>Name what the mind is doing:</i></b> Name the type of anxious thinking (fortune-telling, mind reading, "shoulding," postmortem, spotlight effect, storytelling, and more basic types, such as worrying and judging).
+                <br>
+                <br>
+                <b><i>Give real names to your thoughts:</i></b> For example, <i>Mind-Reading Randy.</i>
+                <br>
+                <br>
+                <b><i>Ditch the meanings of your thoughts:</i></b> Use repetition or other voices, sing them, see them.
+                <br>
+                <br>
+                <b><i>Thank the mind:</i></b> For example, <i>Thanks for the memory.</i>
+                <br>
+                <br>
+                <i><b>Defuse with Dr. Phil:</b> How's that thought working for you?</i>
+                <br>
+                <br>
+                <b><i>Awareness of thinking:</i></b> Sit silently with your thoughts.
+                <br>
+                <br>
+                <b><i>Observe your thoughts:</i></b> Use the waterfall, leaves on a stream, or clouds in the sky <a href="section_4_2.html" data-role="button" data-inline="true" >metaphors</a>.
+                Over the next several days, try out all of the defusion strategies. Record the anxious thought you were having (e.g. <i>I'm boring</i>), the defusion strategy you tried using (e.g. <i>I am having the thought that I’m boring</i>), and any positive results (e.g. <i>I had the thought and still contributed to a conversation</i>) in the following space provided.";
+
+            </p>
+
+            <div id='exercise_7'></div>
+            <script>
+                document.getElementById('exercise_7').innerHTML = exercise_7;
+                loadExercise_7();
+            </script>
+            <p>
+                As you sample these strategies, keep track of the ones that you find most helpful. We have found that clients vary tremendously concerning which strategies they like and find useful. Clearly, "no single size fits all". However, we hope that some of these strategies will be a useful tool to help you "get out of your mind and into your life"! 
+            </p>
+        </div>
+        <!-- /content -->
+
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_4_2.html">Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="ui-btn-active ui-state-persist">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+<audio style='visibility:hidden;height:0px;width:0px' id='audio5iOS' controls>
+            <source src="../audio/5_1.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio5Android' controls>
+            <source src="../audio/5_1.mp3">
+            Your browser does not support this audio format.
+        </video>
+
+
+        <script>
+            //autoload audio
+            var section = "audio5";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>

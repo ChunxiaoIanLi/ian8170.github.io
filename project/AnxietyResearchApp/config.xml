@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.wlu.anxietyresearch"
+        version   = "1.0.1">
+
+    <!-- versionCode is optional and Android only -->
+    <!-- -->
+    <preference name="phonegap-version" value="3.6.3" />
+
+    <name>Defusion App</name>
+
+    <description>
+        A mobile app for a pilot research study on anxiety at WLU. 
+    </description>
+
+    <author email="stefanapanait@gmail.com">
+        Stefan Panait
+    </author>
+
+    <icon src="icon.png" />
+    
+    <gap:plugin name="org.apache.cordova.device" version="0.2.8" />
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.7.5" /> <!-- notification plugin-->
+    <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" version="1.2.0" /> <!--hide status bar for ios-->
+
+<!--
+    <gap:config-file platform="android" parent="/manifest/application">
+        <activity android:launchMode="singleInstance" />
+    </gap:config-file>
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+-->
+
+</widget>

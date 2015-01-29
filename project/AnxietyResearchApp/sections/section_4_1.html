@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio4_1on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio4_1off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Developing Your Awareness of Thinking</h>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <h2> Section 4: Awareness of Thinking </h2>
+            <p>
+                At times, we lack awareness of the thoughts that regulate our behavior. Emily told us, "I'm not sure why I don't speak up in class; I just don't." Her actions seemed automatic to her, not influenced by any particular thoughts.
+                <br>
+                <br> 
+                You can't defuse from unhelpful thoughts that you aren't aware of. Sometimes, just "sitting with" a situation can be helpful for identifying fused thoughts. We asked Emily to sit quietly for a few minutes and notice any thoughts that arose while she imagined a typical class discussion. She was able to get in touch with fearful thoughts of not being able to articulate her ideas to her classmates. Thought after thought appeared in her mind about being incompetent and not fitting in. She found it helpful to notice them as simply thoughts.
+                <br>   
+                <br> 
+                Try "sitting with" the image of one of your feared social situations, with the assistance of the following exercises.
+            </p>
+        </div>
+        <!-- /content -->
+
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_3_2.html">Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_4_2.html">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+        <audio style='visibility:hidden;height:0px;width:0px' id='audio4_1iOS' controls>
+            <source src="../audio/4_1.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio4_1Android' controls>
+            <source src="../audio/4_1.mp3">
+            Your browser does not support this audio format.
+        </video>
+        <script>
+            //autoload audio
+            var section = "audio4_1";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>

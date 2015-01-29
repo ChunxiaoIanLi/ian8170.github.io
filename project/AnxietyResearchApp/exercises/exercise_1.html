@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <h1>Top 3 Feared Social Situations</h>
+        </div>
+        <!-- /header -->
+
+        <div data-role="content">
+            <div id='exercise_1'></div>
+            <script>
+                document.getElementById('exercise_1').innerHTML = exercise_1;
+                loadExercise_1();
+            </script>
+        </div>
+        <!-- /content -->
+                    
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                 <ul>
+                    <li>
+                        <a href="#" data-rel="dialog" class="ui-btn-active ui-state-persist">Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../exercises/exercise_2.html" onclick="submitExcerise_1();">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+
+    </div>
+    <!-- /page -->
+
+</body>
+</html>

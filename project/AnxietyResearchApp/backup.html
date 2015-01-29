@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pilot Anxiety</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="lib/jquery.mobile-1.3.2.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="lib/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).bind("mobileinit", function () {
+            $.mobile.defaultPageTransition = 'none';
+        });
+    </script>
+
+    <script src="lib/jquery.mobile-1.3.2.min.js"></script>
+    <script src='js/exercises.js'></script>
+    <script src="phonegap.js"></script>
+    <script src="device.js"></script>
+    <script src="local-notification.js"></script>
+    <script src="Media.js"></script>
+    <script src="MediaError.js"></script>
+
+</head>
+
+<body>
+
+    <div class='background_home'>
+    </div>
+
+    <div data-role="header" style='position:absolute;bottom: 0;width:100%;height : 38px;'>
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#popupContent" data-rel="popup" data-position-to="window">Content</a>
+                </li>
+                <li>
+                    <a href="#popupProgress" onclick='update_progress();' data-rel="popup" data-position-to="window">Progress</a>
+                </li>
+                <li>
+                    <a href="#popupExercises" data-rel="popup" data-position-to="window">Exercises</a>
+                </li>
+            </ul>
+        </div><!-- /navbar -->
+    </div>
+    <!-- /footer -->
+
+    <div data-role="popup" id="popupExercises" data-theme="a">
+        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <a href="#" onclick="clear_Storage();" data-role="button">Clear Storage</a>
+
+        <ul data-role="listview" data-theme="a">
+            <li data-role="list-divider" data-theme="a">
+                <center><h1>  Exercises  </h1></center> 
+            </li>
+            <li data-theme="a">
+                <a href="exercises/exercise_1.html">Exercise 1: Top Feared Social Situations</a>
+            </li>
+            <li>
+                <a href="exercises/exercise_2.html">
+                    Exercise 2: Your Anxious Thoughts
+                </a>
+            </li>
+            <li>
+                <a href="exercises/exercise_3.html">
+                    Exercise 3: "Shoulding"
+                </a>
+            </li>
+            <li>
+                <a href="exercises/exercise_4.html">
+                    Exercise 4: Generating Stories
+                </a>
+            </li>
+            <li>
+                <a href="exercises/exercise_5.html">
+                    Exercise 5: Types of Anxious Thinking
+                </a>
+            </li>
+            <li>
+                <a href="exercises/exercise_6.html">
+                    Exercise 6: Awareness of Thinking
+                </a>
+            </li>
+            <li>
+                <a href="exercises/exercise_7.html">
+                    Exercise 7: Defusing from Your Anxious Thoughts
+                </a>
+            </li>
+    </div>
+
+<div data-role="popup" id="popupContent" data-theme="a">
+    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+
+    <ul data-role="listview" data-theme="a">
+        <li data-role="list-divider" data-theme="a">
+            <center><h1>  Content  </h1></center> 
+        </li>
+
+        <div data-role="collapsible" data-theme="c" data-content-theme="a" data-iconpos="right">
+            <h3>What is Social Anxiety? </h3>
+            <ul data-role="listview" data-divider-theme="a" >
+                <li data-theme="a"> <a href="sections/section_1_1.html">Introduction</a></li>
+                <li data-theme="a"> <a href="sections/section_1_2.html">Defining Shyness and Social Anxiety</a></li>
+                <li data-theme="a"> <a href="sections/section_1_3.html">Fusion vs. Defusion</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-theme="c" data-content-theme="a" data-iconpos="right">
+            <h3>Anxious Thinking</h3>
+            <ul data-role="listview" data-divider-theme="a" >
+                <li data-theme="a"> <a href="sections/section_2_1.html">Types of Anxious Thoughts</a></li>
+                <li data-theme="a"> <a href="sections/section_2_2.html">Types of Anxious Thoughts Cont'd</a></li>
+                <li data-theme="a"> <a href="sections/section_2_3.html">Your Types of Anxious Thinking</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-theme="c" data-content-theme="a" data-iconpos="right">
+            <h3>Defusing from Your Socially Anxious Thoughts</h3>
+            <ul data-role="listview" data-divider-theme="a" >
+                <li data-theme="a"> <a href="sections/section_3_1.html">Defusion Strategies</a></li>
+                <li data-theme="a"> <a href="sections/section_3_2.html">Defusion Strategies Cont'd</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-theme="c" data-content-theme="a" data-iconpos="right">
+            <h3>Awareness of Thinking</h3>
+            <ul data-role="listview" data-divider-theme="a" >
+                <li data-theme="a"> <a href="sections/section_4_1.html">Developing Your Awareness of Thinking</a></li>
+                <li data-theme="a"> <a href="sections/section_4_2.html">Exercise 6: Awareness of Thinking</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-theme="c" data-content-theme="a" data-iconpos="right">
+            <h3>Summary of Defusion Strategies</h3>
+            <ul data-role="listview" data-divider-theme="a" >
+                <li data-theme="a"> <a href="sections/section_5.html">Summary of Defusion Strategies</a></li>
+
+            </ul>
+        </div>
+</div>
+
+
+
+
+
+    <div data-role="popup" id="popupProgress" data-theme="a">
+        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+         <div id='progress_percent'><p>Progress Completed:70%</p></div>
+        <meter id='progres_bar' value="0" min="0" max="16" style="width:100%;height:2em;margin:0px 0px 0px 0px;">75%</meter>
+
+
+    </div>
+
+    <script>
+        function clear_Storage() {
+            localStorage.clear();
+            var phoneName = device.model;
+            alert(phoneName);
+            var now                  = new Date().getTime(),
+            _60_seconds_from_now = new Date(now + 60*1000);
+            window.plugin.notification.local.add({ 
+                    id:         1, // is converted to a string
+                    title:      'Reminder',
+                    message:    'Have you completed your anxiety exercise today?',
+                    date:       _60_seconds_from_now
+            });
+            alert(phoneName);
+        }
+
+        function getRealContentHeight() {
+            var viewport_height = $(window).height();
+            var content_height = viewport_height;
+            return content_height;
+        }
+        $('.background_home').height(getRealContentHeight()-40);
+        function update_progress() {
+            var progress = 0;
+            var total = 16;
+
+            //exercise 1
+            if (localStorage['exercise_1']) {
+                var exercise_1 = JSON.parse(localStorage['exercise_1']);
+                for (var i = 1; i <= 3; i++) {
+                    if (exercise_1['fear_'+i].length>0) {
+                        progress ++;
+                    }
+                }
+            }
+            //exercise 2
+            if (localStorage['exercise_2']) {
+                var exercise_2 = JSON.parse(localStorage['exercise_2']);
+                for (var i = 1; i <= 3; i++) {
+                    if (exercise_2['thought_'+i].length>0) {
+                        progress ++;
+                    }
+                }
+            }
+            //exercise 4
+            if (localStorage['exercise_4']) {
+                var exercise_4 = JSON.parse(localStorage['exercise_4']);
+                for (var i = 1; i<=6; i++) {
+                    if (exercise_4['story_'+i]) {
+                        progress ++;
+                    }           
+                }
+            }
+            //exercise 5
+            if (localStorage['exercise_5']) {
+                var exercise_5 = JSON.parse(localStorage['exercise_5']);
+
+                for (var i = 1; i<=3; i++) {
+                    $("#fear_type_"+i).val(exercise_5['fear_type_'+i]).attr('selected', true)
+                    if (exercise_5['fear_type_'+i]) {
+                        progress ++;
+                    }
+                } 
+            }
+            //exercise 7
+            if (localStorage['exercise_7']) {
+                var exercise_7 = JSON.parse(localStorage['exercise_7']);
+                if ((exercise_7['exercise_7_thought_1'].length > 0) && (exercise_7['exercise_7_notice_1'].length > 0) && (exercise_7['exercise_7_strategy_1'] != 'none')) {
+                    progress ++;
+                }
+            }
+            var pBar = document.getElementById('progres_bar');
+            var pPer = document.getElementById('progress_percent');
+            pPer.innerHTML = "<p> Progress Completed:"+progress/16*100+"% </p>";
+            pBar.value = progress;
+
+            console.log("progress: "+progress);
+        }
+        </script>
+
+</body>
+
+</html>

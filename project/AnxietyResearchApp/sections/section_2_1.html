@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio2_1on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio2_1off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Types of Anxious Thinking </h>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <h2> Section 2: Anxious Thinking </h2>
+
+            <p>
+                We are all familiar with basic types of anxious thinking, such as:
+            </p>
+            <ul>
+                <li>worrying (I won't fit in),</li>
+                <li>having anxious memories (It's just like that awful speech I gave in seventh grade),</li>
+                <li>evaluating or judging (This isn't going very well, You look like an idiot), and </li>
+                <li>making negative comparisons (He's way more interesting than I am). </li>
+            </ul>
+            <p>
+                Other, slightly more elaborate types of thinking the socially anxious mind favors include the following.
+            </p>
+            <p>
+                <b style='font-size:125%'> Fortune-Telling: </b>
+                When your mind predicts what will happen, usually something negative
+            </p>
+            <p> 
+                <b>Example:</b> <i>I won't have anything to say, I'll have a panic attack and won't be able to speak, and everyone will discover that I'm incompetent.</i> 
+            </p>
+            <p> 
+                <b style='font-size:125%'>Mind Reading: </b>
+                When your mind tells you what others are thinking about you, usually in the form of judgmental thoughts. 
+            </p> 
+            <p>
+                <b>Example:</b> thoughts starting with He thinks..., She thinks..., or They think.. (for example, <i>She must think I'm a nervous wreck</i> or <i>They think I'm stupid and boring</i>).
+            </p>
+            <p>
+                <b style='font-size:125%'>"Shoulding": </b>
+                Using statements that include the word "should," is a popular activity of the socially anxious mind.
+            </p>
+            <div id='exercise_3'></div>
+            <script>
+                document.getElementById('exercise_3').innerHTML = exercise_3;
+                loadExercise_3();
+            </script>
+
+
+            
+            
+
+        </div>
+        <!-- /content -->
+
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_1_3.html" >Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_2_2.html">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+        <audio style='visibility:hidden;height:0px;width:0px' id='audio2_1iOS' controls>
+            <source src="../audio/2_1.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio2_1Android' controls>
+            <source src="../audio/2_1.mp3">
+            Your browser does not support this audio format.
+        </video>
+        <script>
+            //autoload audio
+            var section = "audio2_1";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>

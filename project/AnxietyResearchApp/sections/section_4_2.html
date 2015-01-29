@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio4_2on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio4_2off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Exercise 6: Awareness of Thinking</h>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <h2>Exercise 6: Awareness of Thinking</h2>
+            <p>
+                The purpose of these exercises is to <b><i>Develop Awareness of Thinking</b></i>, to watch your mind generating thoughts without getting caught up in the contents of those thoughts.
+                <br>
+                <br> 
+                Start by settling into a comfortable sitting position as you bring your attention to the breath, following it as it enters and leaves the body, coming and going of its own accord, allowing the breath to find its own rhythm, not needing to control it in any way.
+                <br>
+                <br> 
+                If you would like to work with a specific social situation, bring it to mind now, getting a clear picture of where you are, who you are with, and what you are doing.
+                <br>
+                <br> 
+                Whenever you are ready, gently shift your awareness to thinking-to paying attention to thoughts as events in the mind. As best you can, bring your awareness to thoughts as they arise in the mind, passing through the space of the mind, and eventually disappearing. There is no need to censor or encourage thinking in any direction, simply allow thoughts to arise naturally, not holding on to thoughts, pushing them away, or analyzing their contents, simply observing thoughts as events in the field of awareness.
+                <br>
+                <br> 
+            </p>
+            <a href="section_4_3.html" data-role="button" data-inline="true" data-transition="fade">Movie Theatre Metaphor</a>
+            <br>
+            <a href="section_4_4.html" data-role="button" data-inline="true" data-transition="fade">Thoughts as waterfall Metaphor</a>
+            <br>
+            <a href="section_4_5.html" data-role="button" data-inline="true" data-transition="fade">Leaves on a stream Metaphor</a>
+            <br>
+            <a href="section_4_6.html" data-role="button" data-inline="true" data-transition="fade">Clouds in the sky Metaphor</a>
+        </div>
+        <!-- /content -->
+
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_4_1.html">Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_5.html">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+<audio style='visibility:hidden;height:0px;width:0px' id='audio4_2iOS' controls>
+            <source src="../audio/4_2.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio4_2Android' controls>
+            <source src="../audio/4_2.mp3">
+            Your browser does not support this audio format.
+        </video>
+
+
+        <script>
+            //autoload audio
+            var section = "audio4_2";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>
+

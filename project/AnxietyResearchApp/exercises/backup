@@ -1,0 +1,54 @@
+<form name="exercise_1" id="exercise_1">
+                    <table border="0">
+                        <tr>
+                            <td style="width:100%">
+                                <input type='text' name='fear_1' placeholder='1.' onchange='submitExcerise_1()'/> 
+                            </td>
+                            <td>
+                                <div id='fear_1_check' style='color:#00FF00;visibility:hidden;'>&#x2713;</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:100%;">
+                                <input type='text' name='fear_2' placeholder='2.' onchange='submitExcerise_1()'/>
+                            </td>
+                            <td>
+                                <div id='fear_2_check' style='color:#00FF00;visibility:hidden;'>&#x2713;</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:100%;">
+                                <input type='text' name='fear_3' placeholder='3.' onchange='submitExcerise_1()'/>
+                            </td>
+                            <td>
+                                <div id='fear_3_check' style='color:#00FF00;visibility:hidden;'>&#x2713;</div>
+                            </td>
+                        </tr>
+                        
+                        
+                    </table>
+                </form>
+                <script>
+                    if (localStorage['exercise_1']) {
+                        var exercise_1 = JSON.parse(localStorage['exercise_1']);
+                        for (var i = 1; i <= 3; i++) {
+                            if (exercise_1['fear_'+i].length>0) {
+                                document.forms["exercise_1"]["fear_"+i].value = exercise_1['fear_'+i];
+                                $('#fear_'+i+'_check').css('visibility','visible');
+                            }
+                        }
+                    }
+                    function submitExcerise_1() {
+                        var exercise_1 = {};
+                        for (var i = 1; i <= 3; i++) {
+                            if (document.forms["exercise_1"]["fear_"+i].value.length>0) {
+                                exercise_1["fear_"+i] = document.forms["exercise_1"]["fear_"+i].value;
+                                $('#fear_'+i+'_check').css('visibility','visible');
+                            } else {
+                                exercise_1["fear_"+i] = "";
+                                $('#fear_'+i+'_check').css('visibility','hidden');
+                            }
+                        }
+                        localStorage.setItem('exercise_1', JSON.stringify(exercise_1));                       
+                    }
+                </script>

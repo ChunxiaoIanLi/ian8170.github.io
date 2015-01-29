@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio2_2on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio2_2off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Types of Anxious Thinking Cont'd</h>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <p>
+                <b style='font-size:125%'>Postmortem: </b> 
+                When your mind rehashes or ruminates about what you think happened (or should have happened) in a social situation.The following is an example of a "postmortem" review that Jack engaged in after he gave a presentation at school:
+            </p>
+            <p>
+                <b>Example:</b> <i>Oh no, I really screwed up that presentation. I should have prepared more. I can't believe I made that stupid comment about finances. And I forgot to mention the plan I've been preparing. What an idiot! The prof sure had a disappointed look on her face. I bet she dislikes having me in her class. I'm definitely going to fail!</i>
+            </p>
+            <p>
+                <b style='font-size:125%'>The Spotlight Effect: </b> 
+                To always feel as if you are the center of attention, as if a spotlight were shining on you for everyone to see (and judge you). 
+            </p>
+            <p>
+                <b style='font-size:125%'>Generating Stories:</b> 
+                generating stories specifically about who you are in social situations, sometimes pretty negative stories (for example, a story about you as a loser).
+            </p> 
+            <div id='exercise_4'></div>
+            <script>
+                document.getElementById('exercise_4').innerHTML = exercise_4;
+                loadExercise_4();
+            </script>
+        </div>
+        <!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_2_1.html" >Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_2_3.html">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+        <audio style='visibility:hidden;height:0px;width:0px' id='audio2_2iOS' controls>
+            <source src="../audio/2_2.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio2_2Android' controls>
+            <source src="../audio/2_2.mp3">
+            Your browser does not support this audio format.
+        </video>
+
+
+        <script>
+            //autoload audio
+            var section = "audio2_2";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>
+
+
+
+             

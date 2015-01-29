@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+
+    <div data-role="page" data-position="fixed">
+        <div data-role="header">
+            <div>
+                <img id='audio3_2on' src="../images/audio_on.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;' onClick='playAudio();' />
+                <img id='audio3_2off' src="../images/audio_off.png" style='position:fixed;top:7px;right:10px;height:30px;width:30px;visibility:hidden;' onClick='playAudio();' />
+            </div>
+            <h1>Defusion Strategies Cont'd </h1>
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <h3> Ditching the Meaning of Your Thoughts: </h3>
+            <p>
+                Given that we tend to get caught up in the meanings of the words that make up our thoughts, several defusion strategies involve highlighting aspects of words other than their meanings, such as how they sound or look.
+                <br>
+                <br>
+                <b><i> Examples: </b></i>
+            </p>
+            <ul>
+                <li> 
+                    <b> Repetition. </b>
+                    Try this now: repeat the word "boring" very quickly for thirty to forty-five seconds, paying attention to how the word sounds as you do it.
+                    <br>
+                    <br>
+                    What did you notice? Emily commented that after twenty seconds, she could only hear "boing", and the word lost some of its heaviness for her.
+                    <br>
+                    <br>
+                    Try this again with a word or phrase that you tend to fuse with in your feared social situations.
+                </li>
+                <br>
+                <li> 
+                    <b> Other voices. </b>
+                    Try speaking your thoughts in someone else's voice, such as a television personality, politician, or cartoon character.
+                </li>
+                <br>
+                <li> 
+                    <b> Singing your thoughts. </b>
+                    Try singing your thoughts to the tune of a song such as "Happy Birthday" or to your favorite (or least favorite) song. Try searching for songs that include phrases that are relevant to you.
+                </li>
+                <br>
+                <li>
+                    <b> Seeing your thoughts. </b>
+                    Notice how your thoughts look by printing, writing, or typing them in different fonts and colors.
+                </li>
+            </ul>
+
+            <h3> Thanking the Mind: </h3>
+            <p>
+                When your mind thinks about the dangers that await you in social situations, it is just doing its job, and it deserves some credit for that (even if it ultimately is not helpful). Hence, a popular defusion strategy is to thank the mind for thoughts. 
+            </p>
+            <ul>
+                <p>
+                    <i>
+                        <b>e.g.</b>
+                        Thank you, mind, for the thought that I'm going to make a fool of myself.
+                    </i>
+                </p>
+            </ul>
+            <p>
+                A variation is to thank the processes that helped to shape the mind, such as evolution and genetics.
+            </p>
+            <ul>
+                <p>
+                    <i>
+                        <b> e.g.</b>
+                        Thanks, evolution, for keeping my thoughts focused on danger or Thank you, Gramps, for passing on your "shyness" genes.
+                    </i>
+                </p>
+            </ul>
+
+            <h3> Defusing with Dr. Phil: </h3>
+            <p>
+                On his popular television advice show, Dr. Phil, psychologist Phil McGraw is known for asking, "How's that working for you?" when guests describe the ways they have been addressing their problems. In a similar vein, you can ask how specific thoughts are "working for you."
+                <br>
+            </p>
+            <ul><p>
+                <b><i>e.g.</b></i>
+                Whenever Jake would consider contacting Kristina for a date, his mind was flooded with thoughts of being unlovable, which caused him to avoid following through with a call or e-mail. When he asked himself, <i>How are these thoughts working for me?</i> he was met with a resounding <i>Not at all!</i> That allowed him enough space to realize that his fused mind was directing him away from his value of being in a loving relationship. After a few sessions with <i>Dr. Phil</i>, he asked Kristina out for coffee.
+            </p>
+            </ul>
+            
+
+
+
+
+
+        </div>
+        <!-- /content -->
+
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="right">
+                <ul>
+                    <li>
+                        <a href="section_3_1.html">Previous</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="section_4_1.html" onclick="">Continue</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /footer -->
+        <audio style='visibility:hidden;height:0px;width:0px' id='audio3_2iOS' controls>
+            <source src="../audio/3_2.mp3" type="audio/mp3">
+            Your browser does not support this audio format.
+        </audio>
+        <video style='visibility:hidden;height:0px;width:0px' id='audio3_2Android' controls>
+            <source src="../audio/3_2.mp3">
+            Your browser does not support this audio format.
+        </video>
+        <script>
+            //autoload audio
+            var section = "audio3_2";
+            if (typeof(device) != "undefined") {
+                devicePlatform = device.platform;
+            } else {
+                devicePlatform = "Android";
+            }
+            if (devicePlatform === 'iOS') {
+                var audio = document.getElementById(section+"iOS");
+            } else {
+                var audio = document.getElementById(section+"Android");
+            }
+
+            if (localStorage['audio'] === 'true') {
+                document.getElementById(section+"on").style.visibility = "hidden";
+                document.getElementById(section+"off").style.visibility = "visible";
+                audio.play();
+            }
+            function playAudio() {
+                if (localStorage['audio'] === 'true') {
+                    localStorage['audio'] = 'false';
+                    document.getElementById(section+"on").style.visibility = "visible";
+                    document.getElementById(section+"off").style.visibility = "hidden";
+                    audio.pause();
+                } else {
+                    localStorage['audio'] = 'true';
+                    document.getElementById(section+"on").style.visibility = "hidden";
+                    document.getElementById(section+"off").style.visibility = "visible";
+                    audio.play();
+                }
+            }
+        </script>
+    </div>
+    <!-- /page -->
+
+</body>
+</html>
