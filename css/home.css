@@ -3,21 +3,21 @@ body{
 }
 
 .contentview{
-	margin-left:350px;
-	margin-right:350px;
+	margin-left:25%;
+	margin-right:25%;
 }
 
 .textcontent{
 	position: absolute;
-	top:300px;
+	top:39%;
 	font-size: 120%;
 	color: white;
 }
 
 .nav{
 	position: fixed;
-	right: 400px;
-	top: 50px;
+	right: 25%;
+	top: 10%;
 	list-style-type: none;
 }
 
