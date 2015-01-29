@@ -1,3 +1,11 @@
 <div ng-controller="ProjectCtrl">
-	<p class="textcontent">I have nothing done in my whole fking life</p>
+	<div ng-repeat="project in projects">
+		<div class"projectcontainer">
+			<div class="textcontent">
+				<h2>{{project.name}}</h2>
+				<p class="intro">{{project.intro}}</p>
+			</div>
+			<iframe src={{project.url}}></iframe>
+		</div>
+	</div>
 </div>

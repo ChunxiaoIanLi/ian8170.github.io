@@ -7,11 +7,25 @@ body{
 	margin-right:25%;
 }
 
-.textcontent{
+.maincontainer{
 	position: absolute;
 	top:350px;
 	font-size: 120%;
 	color: white;
+}
+
+.projectcontainer{
+	margin-bottom: 50px;
+}
+
+.textcontent{
+	position: absolute;
+	right:30%;
+	color:white;
+}
+
+.intro{
+	text-align: center;
 }
 
 .nav{
@@ -19,6 +33,7 @@ body{
 	right: 25%;
 	top: 10%;
 	list-style-type: none;
+	z-index: 1;
 }
 
 .nav li{
@@ -50,4 +65,9 @@ body{
 	color: white !important;
 	border-bottom-style: solid;
 	border-width:1px;
+}
+
+iframe{
+	width:400px;
+	height:600px;
 }
