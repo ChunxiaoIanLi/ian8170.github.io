@@ -11,7 +11,7 @@ function get_terms() {
     return Object.keys(terms);
 }
 
-function add_term(term) {
+function add_term(term, goal) {
     if (_is_undefined(localStorage['gpa_user'])) { //new term
         localStorage['gpa_user'] = null;
     }
@@ -19,7 +19,7 @@ function add_term(term) {
     var terms = JSON.parse(localStorage['gpa_user']);
     if (terms == null) {
         var new_term = {};
-        new_term[term] = null;
+        new_term[term] = {'goal': goal, 'gpa': goal, 'courses': null};
         localStorage['gpa_user'] = JSON.stringify(new_term);
         return 'success';
     }
@@ -28,7 +28,34 @@ function add_term(term) {
         return 'term already exists';
     }
 
-    terms[term] = null;
+    terms[term] = {'goal': goal, 'gpa': goal, 'courses': null};
+    localStorage['gpa_user'] = JSON.stringify(terms);
+    return 'success';
+}
+
+function get_term_details(term) {
+    if (_is_undefined(localStorage['gpa_user'])) { //new term
+        localStorage['gpa_user'] = null;
+    }
+    var terms = JSON.parse(localStorage['gpa_user']);
+    if (terms == null) {
+        return 'nothing in storage';
+    }
+
+    return terms[term];
+}
+
+function edit_term_goal(term, goal) {
+    if (_is_undefined(localStorage['gpa_user'])) { //new term
+        localStorage['gpa_user'] = null;
+    }
+    var terms = JSON.parse(localStorage['gpa_user']);
+    if (terms == null) {
+        return 'nothing in storage';
+    }
+    var term_details = terms[term];
+    term_details['goal'] = goal;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'success';
 }
@@ -62,7 +89,7 @@ function delete_term(term) {
 
     var t_keys = Object.keys(terms);
     if (t_keys.length == 0) { // set to null so add_term(term) will work properly
-        terms = null;
+        terms = {};
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'made null';
     }
@@ -80,16 +107,18 @@ function add_course(term, name, goal) {
         return 'no such term';
     }
 
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     var details = {};
     details['goal'] = goal;
     details['distance'] = goal;
     details['details'] = null;
-    var courses = terms[term];
     if (courses == null) {
         var new_course = {};
         new_course[name] = details;
         courses = new_course;
-        terms[term] = courses;
+        term_details['courses'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'success';
     }
@@ -99,7 +128,8 @@ function add_course(term, name, goal) {
     }
 
     courses[name] = details;
-    terms[term] = courses;
+    term_details['courses'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'success';
 }
@@ -112,8 +142,13 @@ function get_courses(term) {
     if (!(term in terms)) {
         return 'no such term';
     }
-    var courses = terms[term];
-    return Object.keys(courses);
+    var term_details = terms[term];
+    var courses = term_details['courses'];
+    if(courses == null) {
+        return [];
+    } else {
+        return Object.keys(courses);
+    }
 }
 
 function delete_course(term, course) {
@@ -126,7 +161,8 @@ function delete_course(term, course) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if ((courses == null) || !(course in courses)) {
         return 'no such course';
     }
@@ -135,7 +171,8 @@ function delete_course(term, course) {
     var c_keys = Object.keys(courses);
     if (c_keys.length == 0) {
         courses = null;
-        terms[term] = courses;
+        term_details['courses'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'made null';
     }
@@ -143,7 +180,7 @@ function delete_course(term, course) {
     return 'course deleted';
 }
 
-function edit_course(term, course, name, goal) {
+function edit_course(term, course, goal) {
     if (_is_undefined(localStorage['gpa_user'])) {
         return 'nothing in storage';
     }
@@ -153,7 +190,8 @@ function edit_course(term, course, name, goal) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (course in courses) {
         var contents = courses[course];
         delete courses[course];
@@ -164,8 +202,10 @@ function edit_course(term, course, name, goal) {
         } else {
             contents['distance'] = goal;
         }
-        courses[name] = contents;
-        terms[term] = courses;
+        courses[course] = contents;
+		console.log(courses[course]);
+        term_details['details'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'edited';
     }
@@ -182,13 +222,18 @@ function add_assessment(term, course, name, weight) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
 
     var course_info = courses[course]; //{'goal': 0, 'distance': 0, 'details':null or Object}
     var assessments = course_info['details']; //{null or 'quizzes': Object}
+
+    if(assessments != null && name in assessments) {
+        return 'name already used';
+    }
 
     var as_details = {};
     as_details['weight'] = weight;
@@ -199,7 +244,8 @@ function add_assessment(term, course, name, weight) {
         replace_null[name] = as_details;
         course_info['details'] = replace_null;
         courses[course] = course_info;
-        terms[term] = courses;
+        term_details['details'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'success';
     }
@@ -207,7 +253,8 @@ function add_assessment(term, course, name, weight) {
     assessments[name] = as_details;
     course_info['details'] = assessments;
     courses[course] = course_info;
-    terms[term] = courses;
+    term_details['details'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'success';
 }
@@ -222,14 +269,19 @@ function get_assessments(term, course) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
 
     var course_info = courses[course];
     var assessments = course_info['details'];
-    return Object.keys(assessments);
+    if(assessments == null) {
+        return [];
+    } else {
+        return assessments;
+    }
 }
 
 function delete_assessment(term, course, assessment) {
@@ -242,7 +294,8 @@ function delete_assessment(term, course, assessment) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if ((courses == null) || !(course in courses)) {
         return 'no such course';
     }
@@ -260,19 +313,21 @@ function delete_assessment(term, course, assessment) {
         course_info['details'] = assessments;
         course_info['distance'] = course_info['goal'];
         courses[course] = course_info;
-        terms[term] = courses;
+        term_details['details'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'made null';
     }
     course_info['details'] = assessments;
     courses[course] = course_info;
     course_info['distance'] = _calc_distance(assessments, course_info);
-    terms[term] = courses;
+    term_details['details'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'deleted';
 }
 
-function add_mark(term, course, assessment, name, mark) {
+function add_mark(term, course, assessment, mark) {
     if (_is_undefined(localStorage['gpa_user'])) {
         return 'nothing in storage';
     }
@@ -282,7 +337,8 @@ function add_mark(term, course, assessment, name, mark) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
@@ -297,8 +353,8 @@ function add_mark(term, course, assessment, name, mark) {
     var as_details = assessments[assessment];
     var list = as_details['list'];
     if (list == null) { // first mark
-        var new_as = {};
-        new_as[name] = mark;
+        var new_as = [];
+        new_as.push(mark);
         list = new_as;
         as_details['list'] = list;
         as_details['overall'] = mark; // update overall mark
@@ -306,24 +362,26 @@ function add_mark(term, course, assessment, name, mark) {
         course_info['details'] = assessments;
         course_info['distance'] = _calc_distance(assessments, course_info);
         courses[course] = course_info;
-        terms[term] = courses;
+        term_details['details'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'success';
     }
 
-    list[name] = mark;
+    list.push(mark);
     as_details['list'] = list;
     as_details['overall'] = _update_overall(list); // update over all mark;
     assessments[assessment] = as_details;
     course_info['details'] = assessments;
     course_info['distance'] = _calc_distance(assessments, course_info);
     courses[course] = course_info;
-    terms[term] = courses;
+    term_details['details'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'success';
 }
 
-function delete_mark(term, course, assessment, name) {
+function delete_mark(term, course, assessment, index) {
     if (_is_undefined(localStorage['gpa_user'])) {
         return 'nothing in storage';
     }
@@ -333,7 +391,8 @@ function delete_mark(term, course, assessment, name) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
@@ -347,13 +406,12 @@ function delete_mark(term, course, assessment, name) {
 
     var as_details = assessments[assessment];
     var list = as_details['list'];
-    if (list == null || !(name in list)) {
-        return 'no such assessment name';
+    if (list == null) {
+        return 'no assessments recorded';
     }
 
-    delete list[name];
-    var l_keys = Object.keys(list);
-    if (l_keys.length == 0) {
+    list.splice(index, 1);
+    if (list.length == 0) {
         list = null;
         as_details['list'] = list;
         as_details['overall'] = 0; // update over all mark;
@@ -361,7 +419,8 @@ function delete_mark(term, course, assessment, name) {
         course_info['details'] = assessments;
         course_info['distance'] = _calc_distance(assessments, course_info);
         courses[course] = course_info;
-        terms[term] = courses;
+        term_details['details'] = courses;
+        terms[term] = term_details;
         localStorage['gpa_user'] = JSON.stringify(terms);
         return 'made null';
     }
@@ -371,7 +430,8 @@ function delete_mark(term, course, assessment, name) {
     course_info['details'] = assessments;
     course_info['distance'] = _calc_distance(assessments, course_info);
     courses[course] = course_info;
-    terms[term] = courses;
+    term_details['details'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'deleted';
 }
@@ -386,7 +446,8 @@ function edit_weight(term, course, assessment, weight) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
@@ -403,12 +464,13 @@ function edit_weight(term, course, assessment, weight) {
     assessments[assessment] = contents;
     course_info['distance'] = _calc_distance(assessments, course_info);
     courses[course] = course_info;
-    terms[term] = courses;
+    term_details['details'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'edited';
 }
 
-function edit_mark(term, course, assessment, as_name, mark) {
+function edit_mark(term, course, assessment, index, mark) {
     if (_is_undefined(localStorage['gpa_user'])) {
         return 'nothing in storage';
     }
@@ -418,7 +480,8 @@ function edit_mark(term, course, assessment, as_name, mark) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
@@ -436,14 +499,15 @@ function edit_mark(term, course, assessment, as_name, mark) {
     }
 
     var contents = as_details['list'];
-    contents[as_name] = mark;
+    contents[index] = mark;
     as_details['list'] = contents;
     as_details['overall'] = _update_overall(contents); // update over all mark;
     assessments[assessment] = as_details;
     course_info['details'] = assessments;
     course_info['distance'] = _calc_distance(assessments, course_info);
     courses[course] = course_info;
-    terms[term] = courses;
+    term_details['details'] = courses;
+    terms[term] = term_details;
     localStorage['gpa_user'] = JSON.stringify(terms);
     return 'edited';
 }
@@ -458,7 +522,8 @@ function get_marks(term, course, assessment) {
         return 'no such term';
     }
 
-    var courses = terms[term];
+    var term_details = terms[term];
+    var courses = term_details['courses'];
     if (!(course in courses)) {
         return 'no such course';
     }
@@ -472,19 +537,18 @@ function get_marks(term, course, assessment) {
 
     var as_details = assessments[assessment];
     if (as_details['list'] == null) {
-        return 'nothing to get';
+        return [];
     }
 
     return as_details['list'];
 }
 
 function _update_overall(list) {
-    var keys = Object.keys(list);
     var total = 0;
-    for (var i = 0; i < keys.length; i++) {
-        total += parseFloat(list[keys[i]]);
+    for (var i = 0; i < list.length; i++) {
+        total += parseFloat(list[i]);
     }
-    return total / keys.length;
+    return total / list.length;
 }
 
 function _calc_distance(assessments, course_info) {
