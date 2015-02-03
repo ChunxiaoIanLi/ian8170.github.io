@@ -14,18 +14,37 @@
 
 
 </head>
-<body>
-<div class="contentview" ng-controller="HomeCtrl">
-	<img src="http://24.media.tumblr.com/75778eb9fafc845f89ba40c57e050f0c/tumblr_mjca1hg6wN1rzma7lo1_400.gif">
-	<p style="color:white; position:relative; bottom:30px;">hopefully i can find something to replace this -____-</p>
-	<ul class="nav">
-		<li><a href="#/home" ng-class="{active:isActive('me')}"  ng-click="toggle('me')">About me</a></li>
-		<li><a href="#/project" ng-class="{active:isActive('project')}"  ng-click="toggle('project')">Project</a></li>
-		<li><a href="#/contact" ng-class="{active:isActive('contact')}"  ng-click="toggle('contact')">Contact</a></li>
-	</ul>
-	<div ng-view>
+<body ng-controller="HomeCtrl">
+	<div class="maincontainer">
+		<div class="titlecontainer">
+			<p id="myname">IAN LI</p>
+			<p id="welcome">Welcome to my website.</p>
+		</div>
+		<div class="contentview">
+			<div>
+				<div id="mypic">
+					<img src="img/me.jpg">
+				</div>
+				<div id="abouttext">
+					<p class="subhead">About Me</p>
+					<p>My name is ian Li asdfasdfasdfasd fasdf asd fasd fad asd fasdf asdf asdf asdf asd asd asd fasdf asdf asdf asd fasd fasd fasdf asd fds asdf asdf asd asd asd</p>
+				</div>
+			</div>
+			<div ng-controller="ProjectCtrl">
+				<div ng-repeat="project in projects">
+					<div class="projectcontainer">
+						<div>
+							<p class="subhead">{{project.name}}</p>
+							<p>{{project.intro}}</p>
+						</div>
+						<iframe src={{project.url}}></iframe>
+					</div>
+				</div>
+			</div>
+			<div id="contact">
+			</div>
+		</div>
 	</div>
-</div>
 </body>
 
 </html>
