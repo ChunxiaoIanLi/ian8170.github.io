@@ -116,3 +116,33 @@ p{
 	font-size: 40px;
 }
 
+@media screen and (max-width: 1500px) {
+
+	.maincontainer{
+		margin:auto;
+	}
+
+    #mypic {
+        max-width: 300px;
+        float: left;
+    }
+
+    #abouttext {
+        margin-left: 400px;
+    }
+
+    #myname {
+        font-size: 150px;
+    }
+
+    #welcome {
+        font-size: 60px;
+    }
+
+    .projectcontainer {
+        margin-top: 100px;
+    }
+
+    .projectcontainer > iframe {
+        float: right;
+    }
