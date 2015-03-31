@@ -116,7 +116,7 @@ p{
 	font-size: 40px;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1300px) {
 
 	.maincontainer{
 		margin:auto;
@@ -129,14 +129,6 @@ p{
 
     #abouttext {
         margin-left: 400px;
-    }
-
-    #myname {
-        font-size: 150px;
-    }
-
-    #welcome {
-        font-size: 60px;
     }
 
     .projectcontainer {
