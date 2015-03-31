@@ -9,9 +9,7 @@ p{
 
 /* main container*/
 .maincontainer{
-	width:1200px;
-	margin-left:20%;
-	margin-right:20%;
+	margin:auto;
 }
 /*for title */
 .titlecontainer{
