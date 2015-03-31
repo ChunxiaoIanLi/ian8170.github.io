@@ -19,47 +19,61 @@
 		<div class="titlecontainer">
 			<p id="myname">IAN LI</p>
 			<p id="welcome">Welcome to my website.</p>
+			<ul id="jumplink">
+				<li><a href="#jumpintroduction">About Me</a></li>
+				<li><a href="#jumpprojects">Project</a></li>
+				<li><a href="#jumpcontact">Contact</a></li>
+			</ul>
 		</div>
 		<div class="contentview">
-			<div>
+
+			<div id="jumpintroduction">
 				<div id="mypic">
 					<img src="img/me.jpg">
 				</div>
 				<div id="abouttext">
 					<p class="subhead">About Me</p>
-					<p>My name is ian Li asdfasdfasdfasd fasdf asd fasd fad asd fasdf asdf asdf asdf asd asd asd fasdf asdf asdf asd fasd fasd fasdf asd fds asdf asdf asd asd asd</p>
+					<p>I am a third year student studying at Wilfrid Laurier University, doing a Bachelor of
+Computer Science, with PEP (Professional Work Experience). I am extremely interested in doing my 16 month long internship with you starting May 2015 as a software engineer.</p>
 				</div>
 			</div>
-			<div ng-controller="ProjectCtrl">
-				<div ng-repeat="project in projects">
-					<div class="projectcontainer">
-						<div>
+
+			<div class="space"></div>
+			<div class="space"></div>
+			<div class="space"></div>
+			<div class="space"></div>
+
+			<div id="jumpprojects">
+				<p class="subhead">Projects</p>
+				<div ng-controller="ProjectCtrl">
+					<div ng-repeat="project in projects">
+						<div class="projectcontainer">
 							<p class="subhead">{{project.name}}</p>
-							<p>{{project.intro}}</p>
+							<iframe src={{project.url}}></iframe>
+							<div>
+								<p>{{project.intro}}</p>
+							</div>
+							<div class="clear-float"></div>
 						</div>
-						<iframe src={{project.url}}></iframe>
 					</div>
 				</div>
+
+			<div class="space"></div>
+			<div class="space"></div>
+			<div class="space"></div>
+			<div class="space"></div>
+
+			<div id="jumpcontact">
+				<p class="subhead">Resume & Contact</p>
+				<p>Click <span><a href="project/Chunxiao-Li-Resume.pdf" target="_blank">here</a></span> to open a pdf version of my most recent resume (as of March 2015) in a new tab</p>
+				<div class="space"></div>
+				<p>Email: <span><a href="mailto:lixx8170@mylaurier.ca">lixx8170@mylaurier.ca</a></span></p>
+				<p>Cell Phone: 226-868-8058</p>
 			</div>
-			<div id="contact">
-			</div>
+
 		</div>
 	</div>
+
 </body>
 
 </html>
-
-<maincontainer>
-	<div1>
-		<p></p>
-		<img>
-	</div1>
-	<div2>
-		<p></p>
-		<img>
-	</div2>
-	<div3>
-		<p></p>
-		<img>
-	</div3>
-</maincontainer>

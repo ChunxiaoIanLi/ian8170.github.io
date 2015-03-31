@@ -3,19 +3,18 @@ p{
 	font-size: 25px;
 }
 
-/* main container*/
-.maincontainer{
-	position:absolute;
-	width:1200px;
-	height:100%;
-	left:20%;
-	right:20%;
-
+.space{
+	height:25px;
 }
 
+/* main container*/
+.maincontainer{
+	width:1200px;
+	margin-left:20%;
+	margin-right:20%;
+}
 /*for title */
 .titlecontainer{
-	position: absolute;
 	width: 100%;
 	height: 500px;
 	background: url('../img/background.jpg');
@@ -24,28 +23,51 @@ p{
 }
 
 #myname{
+	position:relative;
 	font-family: Arial;
 	font-weight: bold;
 	font-size: 150px;
-	position: absolute;
-	bottom:150px;
-	left:60px;
 	color:white;
+    margin: 0px;
+    left:100px;
+    top:30px;
 }
 
 #welcome{
+	position:relative;
 	color:black;
 	font-family: Calibri;
 	font-style: italic;
 	font-size: 48px;
-	position: absolute;
-	top:130px;
-	left:60px;
+    margin: 0px;
+    left:100px;
+    top:10px;
 }
+
+/*jump link*/
+#jumplink{
+	list-style-type:none;
+}
+
+#jumplink li{
+	display:inline;
+}
+
+#jumplink li a{
+	position:relative;
+	text-decoration: none;
+	font-size:30px;
+	color:white;
+	padding:50px;
+	left:240px;
+	top:150px;
+	font-weight: bold;
+}
+
 
 /*container for detailed pages*/
 .contentview{
-	position:absolute;
+    margin-top: 50px;
 	top:550px;
 	width: 100%;
 	height: 100%;
@@ -55,8 +77,9 @@ p{
 /*about section*/
 
 #mypic{
-	position: relative;
-	left:30px;
+    max-width: 300px;
+    float: left;
+    margin-left:20px;
 }
 
 #mypic>img{
@@ -64,29 +87,24 @@ p{
 }
 
 #abouttext{
-	position: absolute;
-	top: 0px; 
-	right:0px;
-	width: 60%;
+    margin-left: 400px;
 }
 
 /*for project section*/
-.projectcontainer{
-	position: relative;
-	top:10px;
-}
 
 .projectcontainer>div{
-	position: relative;
-	left:10px;
+	margin-left:10px;
 }
 
 .projectcontainer>iframe{
-	position: relative;
-	bottom: 80px;
-	left : 700px;
+	float:right;
 	width:400px;
 	height:600px;
+	margin-left:120px;
+}
+
+.clear-float{
+	clear:both;
 }
 
 
@@ -97,3 +115,34 @@ p{
 	font-weight: bold;
 	font-size: 40px;
 }
+
+@media screen and (max-width: 1300px) {
+
+	.maincontainer{
+		margin:auto;
+	}
+
+    #mypic {
+        max-width: 300px;
+        float: left;
+    }
+
+    #abouttext {
+        margin-left: 400px;
+    }
+
+    #myname {
+        font-size: 150px;
+    }
+
+    #welcome {
+        font-size: 60px;
+    }
+
+    .projectcontainer {
+        margin-top: 100px;
+    }
+
+    .projectcontainer > iframe {
+        float: right;
+    }
